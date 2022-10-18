@@ -1,10 +1,14 @@
 {
     "editor.codeActionsOnSave": {
-      "source.fixAll": true
+      "source.fixAll": true,
+      "source.organizeImports": true
     },
     "eslint.validate": ["typescript"],
     "[typescript]": {
-      "editor.defaultFormatter": "esbenp.prettier-vscode"
-    }
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
+      
+    },
+    "prettier.trailingComma": "none",
+    "prettier.useEditorConfig": false
   }
   

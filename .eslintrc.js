@@ -6,10 +6,11 @@ module.exports = {
   extends: [
     'eslint:recommended',
     'plugin:react/recommended',
-    'standard-with-typescript'
+    'standard-with-typescript',
+    'plugin:react/jsx-runtime',
+    'prettier'
   ],
-  overrides: [
-  ],
+  overrides: [],
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
@@ -18,11 +19,7 @@ module.exports = {
     },
     project: ['tsconfig.json']
   },
-  plugins: [
-    'react',
-    'eslint-plugin-import-helpers',
-    'unused-imports'
-  ],
+  plugins: ['react', 'eslint-plugin-import-helpers', 'unused-imports'],
   rules: {
     'import-helpers/order-imports': [
       'warn',
@@ -32,6 +29,8 @@ module.exports = {
         alphabetize: { order: 'asc', ignoreCase: true }
       }
     ],
-    'unused-imports/no-unused-imports': 'error'
+    'unused-imports/no-unused-imports': 'error',
+    semi: 'off',
+    '@typescript-eslint/semi': 'off'
   }
-}
+};
