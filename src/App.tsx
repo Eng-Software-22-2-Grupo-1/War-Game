@@ -1,8 +1,13 @@
-import React from 'react'
-import './App.css'
+import { Client } from 'boardgame.io/react';
+import './App.css';
 
-function App (): any {
-  return <h1>War Game</h1>
+import Game from './Game';
+
+function App(): any {
+  const game = Game.createGame({});
+  const NewGame = Client({ game });
+
+  return <NewGame />;
 }
 
-export default App
+export default App;

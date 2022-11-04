@@ -1,7 +1,7 @@
 import { Client } from 'boardgame.io/react';
 import { ReactElement, useState } from 'react';
 
-import createGame from '../Game';
+import createGame from '../Game/Game';
 import GameOptionsPage, { GameOptions } from './GameOptionsPage';
 
 const MainPage = (): ReactElement => {

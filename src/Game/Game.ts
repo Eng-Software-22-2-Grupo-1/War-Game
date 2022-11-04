@@ -1,5 +1,5 @@
-import { GameOptions } from './pages/GameOptionsPage';
-import WorldMap from './WorldMap';
+import WorldMap from '../Maps/WorldMap';
+import { GameOptions } from '../pages/GameOptionsPage';
 
 const createGame = (options: GameOptions | {}): Object => {
   const gameMap = WorldMap;
@@ -21,6 +21,7 @@ const createGame = (options: GameOptions | {}): Object => {
       phases: {}
     }
   };
+
   return Game;
 };
 
