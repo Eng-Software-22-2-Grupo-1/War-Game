@@ -1,9 +1,8 @@
 import WorldMap from '../Maps/WorldMap';
-import { GameOptions } from '../pages/GameOptionsPage';
 
-const createGame = (options: GameOptions | {}): Object => {
+const createGame = (options) => {
   const gameMap = WorldMap;
-
+  const numberOfPlayers = options.numberOfPlayers;
   const Game = {
     setup: () => {
       const countries = Object.keys(gameMap.countryNames).map((country, countryId) => {
@@ -13,6 +12,17 @@ const createGame = (options: GameOptions | {}): Object => {
           troops: 0
         };
       });
+
+      const unnasinedTroops = {};
+      for (let i = 0; i < numberOfPlayers; i++) {
+        unnasinedTroops[i] = options.unitsPerPlayer;
+      }
+
+      if (options.randomizeInitialContries) {
+        countries.forEach((country) => {});
+      }
+
+      console.log(countries);
     },
     moves: {},
     flow: {
