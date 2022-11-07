@@ -1,95 +1,82 @@
 import WorldMap from '../Maps/WorldMap';
-
-const isVictory = (countries) => {
-  const owners = countries.map((country) => country.owner);
-  return owners.every((owner) => owner === owners[0]);
-};
-
-const attackCountry = (G, ctx, attackerId, defenderId, numOfTroops) => {
-  const countries = { ...G.countries };
-
-  if (
-    countries[attackerId].owner !== ctx.currentPlayer &&
-    countries[defenderId].owner === ctx.currentPlayer
-  ) {
-    return;
-  }
-
-  console.log(countries);
-};
-
-const occupyCountry = (G, ctx, countryId) => {
-  const countries = { ...G.countries };
-  const unnasinedTroops = { ...G.unnasinedTroops };
-
-  if (countries[countryId].owner === null && unnasinedTroops[ctx.currentPlayer] > 0) {
-    countries[countryId] = { owner: ctx.currentPlayer, soldiers: 1 };
-    unnasinedTroops[ctx.currentPlayer]--;
-  }
-
-  return { ...G, countries, unnasinedTroops };
-};
-
-const reinforceCountry = (G, ctx, countryId, numOfTroops) => {
-  const countries = { ...G.countries };
-  const unnasinedTroops = { ...G.unnasinedTroops };
-
-  if (
-    countries[countryId].owner === ctx.currentPlayer &&
-    unnasinedTroops[ctx.currentPlayer] >= numOfTroops
-  ) {
-    countries[countryId].troops += numOfTroops;
-    unnasinedTroops[ctx.currentPlayer] -= numOfTroops;
-  }
-
-  return { ...G, countries, unnasinedTroops };
-};
+import Moves from './Moves';
+import utils from './utils';
 
 const createGame = (options) => {
   const gameMap = WorldMap;
-  const numberOfPlayers = options.numberOfPlayers;
+  const { numberOfPlayers } = options;
+  const playersColors = [
+    {
+      color: 'red',
+      code: ''
+    },
+    {
+      color: 'green',
+      code: ''
+    },
+    {
+      color: 'blue',
+      code: ''
+    },
+    {
+      color: 'purple',
+      code: ''
+    },
+    {
+      color: 'white',
+      code: ''
+    },
+    {
+      color: 'black',
+      code: ''
+    }
+  ];
 
   const Game = {
     setup: () => {
-      const countries = Object.keys(gameMap.countryNames).map((country, countryId) => {
+      const countries = Object.entries(gameMap.countryNames).map(([countryId, countryName]) => {
         return {
-          name: country,
+          name: countryName,
           owner: null,
           troops: 0
         };
       });
+      const players = {};
 
-      const unnasinedTroops = {};
       for (let i = 0; i < numberOfPlayers; i++) {
-        unnasinedTroops[i] = options.unitsPerPlayer;
+        players[`${i}`] = {
+          color: playersColors[i],
+          armies: utils.calculateInitialArmies(numberOfPlayers),
+          cards: []
+        };
       }
 
       return {
         countries,
-        unnasinedTroops
+        players
       };
     },
     moves: {
-      reinforceCountry,
-      attackCountry,
-      occupyCountry
+      attackCountry: Moves.attackCountry,
+      occupyCountry: Moves.occupyCountry,
+      reinforceCountry: Moves.reinforceCountry
     },
     turn: {},
     phases: {
       ocupation: {
-        endIf: (G, ctx) =>
+        endIf: ({ G, ctx }) =>
           Object.keys(G.countries).filter((key) => G.countries[key].owner === null).length === 0,
-        moves: { occupyCountry },
+        moves: { occupyCountry: Moves.occupyCountry },
         start: true,
         next: 'reinforcement'
       },
       reinforcement: {
-        endIf: (G, ctx) => Object.values(G.unnasinedTroops).every((troops) => troops === 0),
+        endIf: ({ G, ctx }) => Object.values(G.unnasinedTroops).every((troops) => troops === 0),
 
-        moves: { reinforceCountry }
+        moves: { reinforceCountry: Moves.reinforceCountry }
       },
       war: {
-        onBegin: (G, ctx) => {
+        onBegin: ({ G, ctx }) => {
           const currentPlayer = ctx.currentPlayer;
           const unassignedUnits = { ...G.unassignedUnits };
 
@@ -101,7 +88,14 @@ const createGame = (options) => {
           unassignedUnits[currentPlayer] += Math.max(Math.floor(numOwnedCountries / 3), 3);
           return { ...G, unassignedUnits };
         },
-        moves: { attackCountry, reinforceCountry }
+        moves: { attackCountry: Moves.attackCountry, reinforceCountry: Moves.reinforceCountry }
+      }
+    },
+    endIf: ({ G, ctx }) => {
+      const owners = G.countries.map((country) => country.owner);
+
+      if (owners.every((owner) => owner === owners[0])) {
+        return G.players[`${owners[0]}`];
       }
     }
   };

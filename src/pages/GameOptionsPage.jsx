@@ -3,32 +3,41 @@ import { useState } from 'react';
 
 const GameOptionsPage = ({ onOptionsSubmit }) => {
   const [gameOptions, setGameOptions] = useState({
-    players: [],
-    numberOfPlayers: 0,
+    numberOfPlayers: 3,
     map: null,
-    mode: null,
-    unitsPerPlayer: null
+    mode: null
   });
 
   return (
     <>
       <div>GameOptionsPage</div>
 
-      <select name="numberOfPlayers" id="numberOfPlayers">
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-        <option value="6">6</option>
-      </select>
+      <form>
+        <select
+          name="numberOfPlayers"
+          id="numberOfPlayers"
+          defaultValue={3}
+          required
+          onChange={(e) => {
+            const options = gameOptions;
 
-      <input
-        type="submit"
-        onClick={() => {
-          setGameOptions({ numberOfPlayers: 5 });
+            options.numberOfPlayers = e.target.value;
 
-          onOptionsSubmit(gameOptions);
-        }}
-      />
+            setGameOptions(options);
+          }}>
+          <option value={3}>3</option>
+          <option value={4}>4</option>
+          <option value={5}>5</option>
+          <option value={6}>6</option>
+        </select>
+
+        <input
+          type="submit"
+          onClick={() => {
+            onOptionsSubmit(gameOptions);
+          }}
+        />
+      </form>
     </>
   );
 };
