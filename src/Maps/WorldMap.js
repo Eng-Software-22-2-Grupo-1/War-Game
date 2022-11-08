@@ -1,15 +1,4 @@
-interface WorldMapInterface {
-  image: string;
-  countryNames: {
-    [key: number]: string;
-  };
-  adjacencyList: {
-    [key: number]: number[];
-  };
-  numberOfCountries: number;
-}
-
-const WorldMap: WorldMapInterface = {
+const WorldMap = {
   image: `<svg width="1400" height="938" viewBox="0 0 1400 938" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <g clip-path="url(#clip0_1_4)">
   <rect width="1400" height="938" fill="white"/>
