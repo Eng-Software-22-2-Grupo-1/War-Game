@@ -1,0 +1,10 @@
+.country.attacking {
+  stroke: rgb(0, 255, 0);
+  stroke-width: 3;
+  fill-opacity: 0.5;
+}
+
+.contry.defending {
+  stroke: rgb(255, 0, 0);
+  stroke-width: 3;
+}
