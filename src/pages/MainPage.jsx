@@ -1,6 +1,7 @@
 import { Client } from 'boardgame.io/react';
 import { useState } from 'react';
 
+import Board from '../Board/Board';
 import createGame from '../Game/Game';
 import GameOptionsPage from './GameOptionsPage';
 
@@ -20,7 +21,7 @@ const MainPage = () => {
   const game = createGame(options);
   const NewGame = Client({
     game,
-    board: () => <div>Board</div>,
+    board: Board,
     numPlayers: options.numberOfPlayers
   });
 
