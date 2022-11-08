@@ -1,9 +1,12 @@
-function attackCountry(G, ctx, attackerId, defenderId, numOfTroops) {
+// Revise
+function attackCountry(G, ctx, attackerId, defenderId, numOfTroops, numOfDie) {
   const countries = { ...G.countries };
 
   if (
-    countries[attackerId].owner !== ctx.currentPlayer &&
-    countries[defenderId].owner === ctx.currentPlayer
+    countries[attackerId].owner !== ctx.currentPlayer ||
+    countries[defenderId].owner === ctx.currentPlayer ||
+    !countries[attackerId].adjacencyList.includes(defenderId) ||
+    numOfTroops < 2
   ) {
     return;
   }
@@ -11,6 +14,7 @@ function attackCountry(G, ctx, attackerId, defenderId, numOfTroops) {
   console.log(countries);
 }
 
+// Revise
 function occupyCountry(G, ctx, countryId) {
   const countries = { ...G.countries };
   const unnasinedTroops = { ...G.unnasinedTroops };
@@ -23,6 +27,7 @@ function occupyCountry(G, ctx, countryId) {
   return { ...G, countries, unnasinedTroops };
 }
 
+// Revise
 function reinforceCountry(G, ctx, countryId, numOfTroops) {
   const countries = { ...G.countries };
   const unnasinedTroops = { ...G.unnasinedTroops };
