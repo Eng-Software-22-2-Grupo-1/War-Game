@@ -9,27 +9,27 @@ const createGame = (options) => {
   const playersColors = [
     {
       color: 'Red',
-      code: ''
+      code: '#ff3300'
     },
     {
       color: 'Green',
-      code: ''
+      code: '#66ff66'
     },
     {
       color: 'Blue',
-      code: ''
+      code: '#3399ff'
     },
     {
       color: 'Purple',
-      code: ''
+      code: '#cc00ff'
     },
     {
       color: 'Black',
-      code: ''
+      code: '#000000'
     },
     {
       color: 'White',
-      code: ''
+      code: '#ffffff'
     }
   ];
 
