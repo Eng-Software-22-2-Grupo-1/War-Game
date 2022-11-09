@@ -5,12 +5,12 @@ import WorldMap from "../Maps/WorldMap";
 
 
 const Board = ({ ctx, G, moves }) => {
-    // const [selectedCountry, setSelectedCountry] = useState(null);
+    const [selectedCountry, setSelectedCountry] = useState(null);
     const gameMap = WorldMap
 
     return (
         <div>
-            <SvgImage image={gameMap.image}/>
+            <SvgImage image={gameMap.image} map={WorldMap} countries={G.countries} players={G.players} handleClick={(e) => console.log(e.target)}/>
         </div>
     )
 }
