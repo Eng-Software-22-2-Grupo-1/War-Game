@@ -8,6 +8,10 @@ const GameOptionsPage = ({ onOptionsSubmit }) => {
     mode: null
   });
 
+  const handleClick = () => {
+    onOptionsSubmit(gameOptions);
+  };
+
   return (
     <>
       <div>GameOptionsPage</div>
@@ -21,7 +25,7 @@ const GameOptionsPage = ({ onOptionsSubmit }) => {
           onChange={(e) => {
             const options = gameOptions;
 
-            options.numberOfPlayers = e.target.value;
+            options.numberOfPlayers = +e.target.value;
 
             setGameOptions(options);
           }}>
@@ -31,19 +35,14 @@ const GameOptionsPage = ({ onOptionsSubmit }) => {
           <option value={6}>6</option>
         </select>
 
-        <input
-          type="submit"
-          onClick={() => {
-            onOptionsSubmit(gameOptions);
-          }}
-        />
+        <input type="submit" onClick={handleClick} />
       </form>
     </>
   );
 };
 
 GameOptionsPage.propTypes = {
-  onOptionsSubmit: PropTypes.object.isRequired
+  onOptionsSubmit: PropTypes.func.isRequired
 };
 
 export default GameOptionsPage;

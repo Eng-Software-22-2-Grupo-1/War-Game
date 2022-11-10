@@ -14,11 +14,15 @@ const MainPage = () => {
   };
 
   if (!gameStarted) {
-    return <GameOptionsPage onOptionsSubmit={(newOptions) => handleOptionsSubmit(newOptions)} />;
+    return <GameOptionsPage onOptionsSubmit={handleOptionsSubmit} />;
   }
 
   const game = createGame(options);
-  const NewGame = Client({ game, board: () => <div>Board</div> });
+  const NewGame = Client({
+    game,
+    board: () => <div>Board</div>,
+    numPlayers: options.numberOfPlayers
+  });
 
   return <NewGame />;
 };
