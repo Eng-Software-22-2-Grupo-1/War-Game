@@ -10,12 +10,12 @@ const Path = ({ path, title, playerColor, attackStatus, handleClick, text, troop
 
   const style = {
     fill: playerColor || path.style.fill,
-    fillOpacity: path.style.fillOpacity,
+    fillOpacity: playerColor ? 0.4 : 0,
     fillRule: path.style.fillRule,
-    strokeWidth: hover ? 3 : path.style.strokeWidth,
-    stroke: path.style.stroke,
+    strokeWidth: hover ? 3 : 1,
+    stroke: "black",
     strokeMiterlimit: path.style.strokeMiterlimit,
-    stokeOpacity: path.style.strokeOpacity
+    strokeOpacity: path.style.strokeOpacity
   };
 
   return (
@@ -24,11 +24,12 @@ const Path = ({ path, title, playerColor, attackStatus, handleClick, text, troop
         d={path.getAttribute('d')}
         style={style}
         id={path.id}
-        title={title}
         className={`country ${attackStatus}`}
         onClick={handleClick}
         onMouseEnter={onMouseEnter}
-        onMouseLeave={onMouseLeave}></path>
+        onMouseLeave={onMouseLeave}>
+        <title>{title}</title>
+        </path>
       <text
         fontWeight={'bold'}
         x={text.getAttribute('x')}
