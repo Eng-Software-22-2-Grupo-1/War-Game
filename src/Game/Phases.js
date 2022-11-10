@@ -1,14 +1,9 @@
-import Moves from './Moves';
+import { attackCountry, occupyCountry, reinforceCountry } from './Moves';
 
 const ocupation = {
-  onBegin: ({ G, ctx, events, random, ...plugins }) => G,
-  onEnd: ({ G, ctx, events, random, ...plugins }) => G,
   endIf: ({ G, ctx }) =>
-    Object.values(G.countries).filter((country) => country.owner === null).length === 0,
-  moves: { occupyCountry: Moves.occupyCountry },
-  turn: {
-    // Define
-  },
+    Object.entries(G.countries).every(([countryId, country]) => country.owner !== null),
+  moves: { occupyCountry },
   start: true,
   next: 'reinforcement'
 };
@@ -17,7 +12,7 @@ const reinforcement = {
   onBegin: ({ G, ctx, events, random, ...plugins }) => G,
   onEnd: ({ G, ctx, events, random, ...plugins }) => G,
   endIf: ({ G, ctx }) => Object.values(G.players).every((player) => player.troops === 0),
-  moves: { reinforceCountry: Moves.reinforceCountry },
+  moves: { reinforceCountry },
   turn: {
     // Define
   },
@@ -37,7 +32,7 @@ const war = {
     unassignedUnits[currentPlayer] += Math.max(Math.floor(numOwnedCountries / 3), 3);
     return { ...G, unassignedUnits };
   },
-  moves: { attackCountry: Moves.attackCountry, reinforceCountry: Moves.reinforceCountry },
+  moves: { attackCountry, reinforceCountry },
   turn: {
     // Define
   }

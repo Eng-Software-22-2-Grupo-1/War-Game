@@ -1,6 +1,6 @@
 import WorldMap from '../Maps/WorldMap';
 import utils from '../shared/utils';
-import Moves from './Moves';
+import * as Moves from './Moves';
 import Phases from './Phases';
 
 const createGame = (options) => {
@@ -58,7 +58,8 @@ const createGame = (options) => {
 
       return {
         countries,
-        players
+        players,
+        numOfSetsTraded: 0
       };
     },
     moves: Moves,
