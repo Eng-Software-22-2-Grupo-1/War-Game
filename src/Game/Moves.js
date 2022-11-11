@@ -42,7 +42,7 @@ const attackCountry = (
         countryId: defenderId,
         conqueredPlayer: G.countries[defenderId].owner,
         minOfTroops: numOfAttackDice,
-        maxOfTroops: G.countries[attackCountry].troops - 1
+        maxOfTroops: G.countries[attackerId].troops - 1
       };
     }
   }
@@ -51,15 +51,18 @@ const attackCountry = (
 const occupyCountry = ({ G, ctx, events }, countryId) => {
   if (Validation.occupyCountryValidation(G, ctx, countryId)) {
     G.countries[countryId] = { ...G.countries[countryId], owner: ctx.currentPlayer, troops: 1 };
-    G.players[ctx.currentPlayer].troops--;
+    G.players[ctx.currentPlayer].unassignedTroops--;
     events.endTurn();
   }
 };
 
 const reinforceCountry = ({ G, ctx }, countryId, numOfTroops) => {
   if (Validation.reinforceCountryValidation(G, ctx, countryId, numOfTroops)) {
+    if(ctx.phase === 'reinforcement') {
+      numOfTroops = 1
+    }
     G.countries[countryId].troops += numOfTroops;
-    G.players[ctx.currentPlayer].troops -= numOfTroops;
+    G.players[ctx.currentPlayer].unassignedTroops -= numOfTroops;
   }
 };
 
@@ -72,7 +75,7 @@ const moveTroops = ({ G, ctx }, originCountryId, destinyCountryId, numOfTroops) 
 
 const exchangeCards = ({ G, ctx }, selectedCards) => {
   if (Validation.exchangeCardsValidation(selectedCards)) {
-    G.players[ctx.currentPlayer].troops += utils.calculateTroopsFromCardExchange(G.numOfSetsTraded);
+    G.players[ctx.currentPlayer].unassignedTroops += utils.calculateTroopsFromCardExchange(G.numOfSetsTraded);
 
     selectedCards.forEach((card) => {
       const selectedCardIndex = G.players[ctx.currentPlayer].cards.findIndex(
