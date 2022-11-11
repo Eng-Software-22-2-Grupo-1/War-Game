@@ -44,6 +44,8 @@ const attackCountry = (
         minOfTroops: numOfAttackDice,
         maxOfTroops: G.countries[attackerId].troops - 1
       };
+      G.players[ctx.currentPlayer].numberOfOwnedCountries++;
+      G.players[defenderId].numberOfOwnedCountries--;
     }
   }
 };
@@ -52,17 +54,19 @@ const occupyCountry = ({ G, ctx, events }, countryId) => {
   if (Validation.occupyCountryValidation(G, ctx, countryId)) {
     G.countries[countryId] = { ...G.countries[countryId], owner: ctx.currentPlayer, troops: 1 };
     G.players[ctx.currentPlayer].unassignedTroops--;
+    G.players[ctx.currentPlayer].numberOfOwnedCountries++;
     events.endTurn();
   }
 };
 
-const reinforceCountry = ({ G, ctx }, countryId, numOfTroops) => {
+const reinforceCountry = ({ G, ctx, events }, countryId, numOfTroops) => {
   if (Validation.reinforceCountryValidation(G, ctx, countryId, numOfTroops)) {
     if(ctx.phase === 'reinforcement') {
       numOfTroops = 1
     }
     G.countries[countryId].troops += numOfTroops;
     G.players[ctx.currentPlayer].unassignedTroops -= numOfTroops;
+    events.endTurn();
   }
 };
 

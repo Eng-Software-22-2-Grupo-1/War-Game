@@ -13,7 +13,6 @@ const ocupation = {
 const reinforcement = { 
   endIf: ({ G, ctx }) => Object.values(G.players).every((player) => player.unassignedTroops === 0),
   moves: { reinforceCountry },
-  turn: { minMoves: 1, maxMoves: 1 },
   next: 'war'
 };
 
@@ -22,10 +21,6 @@ const war = {
   turn: {
     onBegin: ({ G, ctx, events }) => {
       receiveTroops({G, ctx});
-      const isPlayerAbleToTradeCards = G.players[(ctx.currentPlayer)].cards.length > 3
-      if (!isPlayerAbleToTradeCards) {
-        events.setStage("reinforcement");
-      }
       
       return G
     },
