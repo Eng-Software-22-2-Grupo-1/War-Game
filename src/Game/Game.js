@@ -8,28 +8,28 @@ const createGame = (options) => {
   const { numberOfPlayers } = options;
   const playersColors = [
     {
-      color: 'Red',
+      name: 'Red',
       code: '#ff3300'
     },
     {
-      color: 'Green',
+      name: 'Green',
       code: '#66ff66'
     },
     {
-      color: 'Blue',
+      name: 'Blue',
       code: '#3399ff'
     },
     {
-      color: 'Purple',
+      name: 'Purple',
       code: '#cc00ff'
     },
     {
-      color: 'Black',
-      code: '#000000'
+      name: 'Orange',
+      code: '#eb9b34'
     },
     {
-      color: 'White',
-      code: '#ffffff'
+      name: 'Yellow',
+      code: '#e6e481'
     }
   ];
 
@@ -44,7 +44,8 @@ const createGame = (options) => {
           color: playersColors[playerId],
           unassignedTroops: utils.calculateInitialTroops(numberOfPlayers),
           cards: [],
-          shouldReceiveCard: false
+          shouldReceiveCard: false,
+          numberOfOwnedCountries: 0
         };
       });
 

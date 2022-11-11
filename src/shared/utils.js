@@ -1,3 +1,35 @@
+const translateColor = (color) => {
+  switch (color.toLowerCase()) {
+    case "red":
+      return "Vermelho"
+    case "blue":
+      return "Azul"
+    case "green":
+      return "Verde"
+    case "purple":
+      return "Roxo"
+    case "orange":
+      return "Laranja"
+    default:
+      return "Amarelo"
+  }
+}
+
+
+const translateGamePhase = (phase) => {
+  switch (phase) {
+    case "reinforcement":
+      return "Reforço"
+    case "war":
+      return "Guerra"
+    case "ocupation":
+      return "Ocupação"
+    default:
+      return null
+  }
+}
+
+
 const calculateInitialTroops = (numOfPlayers) => {
   switch (numOfPlayers) {
     case 3:
@@ -79,5 +111,7 @@ export default {
   isEveryItemUnique,
   calculateNumberOfOwnedCountries,
   calculateNumberOfTroopsToBeReceived,
-  drawCard
+  drawCard,
+  translateColor,
+  translateGamePhase
 };
