@@ -19,6 +19,23 @@ const GameOptionsPage = ({ onOptionsSubmit }) => {
     onOptionsSubmit(gameOptions);
   };
 
+  const handlePlayersAmountChange = (e) => {
+      const options = gameOptions;
+      options.numberOfPlayers = parseInt(e.target.value);
+      setGameOptions(options);
+      setAvailableBots([...Array(options.numberOfPlayers).keys()]);
+      console.log(gameOptions);
+    
+  }
+
+  const handleBotsAmountChange = (e) => {
+    const options = gameOptions;
+    options.numberOfBots = parseInt(e.target.value);
+    setGameOptions(options);
+    console.log(gameOptions);
+
+  }
+
 
   return (
     <Box className='options-background'>
@@ -47,15 +64,7 @@ const GameOptionsPage = ({ onOptionsSubmit }) => {
             style={{ width: "200px", backgroundColor: "white", fontWeight: "bold" }}
             id="demo-simple-select-helper"
             defaultValue={gameOptions.numberOfPlayers}
-            onChange={(e) => {
-              const options = gameOptions;
-
-              options.numberOfPlayers = parseInt(e.target.value);
-
-              setGameOptions(options);
-              setAvailableBots([...Array(options.numberOfPlayers).keys()]);
-              console.log(gameOptions);
-            }}
+            onChange={handlePlayersAmountChange}
           >
             <MenuItem value={3}>3</MenuItem>
             <MenuItem value={4}>4</MenuItem>
@@ -67,16 +76,7 @@ const GameOptionsPage = ({ onOptionsSubmit }) => {
             style={{ width: "200px", backgroundColor: "white", fontWeight: "bold" }}
             id="demo-simple-select-helper"
             defaultValue={gameOptions.numberOfBots}
-            onChange={(e) => {
-              const options = gameOptions;
-
-              options.numberOfBots = parseInt(e.target.value);
-
-
-              setGameOptions(options);
-              console.log(gameOptions);
-
-            }}
+            onChange={handleBotsAmountChange}
           >
             {availableBots.map(e => {
               return <MenuItem key={e} value={e}>{e}</MenuItem>
