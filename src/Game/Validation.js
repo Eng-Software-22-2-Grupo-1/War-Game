@@ -10,58 +10,84 @@ const attackCountryValidation = ({
   numOfAttackDice,
   numOfDefenseDice
 }) => {
-  const countries = { ...G.countries };
+  const isAttackerTheCurrentPlayer =
+    parseInt(G.countries[attackerId].owner) === parseInt(ctx.currentPlayer);
+  const isDefenderNotTheCurrentPlayer =
+    parseInt(G.countries[defenderId].owner) !== parseInt(ctx.currentPlayer);
+  const isAttackerAdjacentToDefender = G.countries[attackerId].adjacencyList.includes(defenderId);
+  const isNumberOfAttackDiceValid = utils.isBetween(numOfAttackDice, 1, 3);
+  const isNumberOfDefenseDiceValid = utils.isBetween(numOfDefenseDice, 1, 2);
+  const attackerHasEnoughTroops = G.countries[attackerId].troops >= numOfAttackDice + 1;
+  const defensorHasEnoughTroops = G.countries[defenderId].troops >= numOfDefenseDice;
 
   return (
-    countries[attackerId].owner === ctx.currentPlayer &&
-    countries[defenderId].owner !== ctx.currentPlayer &&
-    countries[attackerId].adjacencyList.includes(defenderId) &&
-    utils.isBetween(numOfAttackDice, 1, 3) &&
-    countries[attackerId].troops >= numOfAttackDice + 1 &&
-    utils.isBetween(numOfDefenseDice, 1, 2) &&
-    countries[defenderId].troops >= numOfDefenseDice &&
+    isAttackerTheCurrentPlayer &&
+    isDefenderNotTheCurrentPlayer &&
+    isAttackerAdjacentToDefender &&
+    isNumberOfAttackDiceValid &&
+    attackerHasEnoughTroops &&
+    isNumberOfDefenseDiceValid &&
+    defensorHasEnoughTroops &&
     numOfTroops > 1
   );
 };
 
 const occupyCountryValidation = (G, ctx, countryId) => {
-  return G.countries[countryId].owner === null && G.players[ctx.currentPlayer].troops > 0;
+  const isTerrioryUnoccupied = G.countries[countryId].owner === null;
+  const doesPlayerHasUnassignedTroops = G.players[ctx.currentPlayer].unassignedTroops > 0;
+  return isTerrioryUnoccupied && doesPlayerHasUnassignedTroops;
 };
 
 const reinforceCountryValidation = (G, ctx, countryId, numOfTroops) => {
-  return (
-    G.countries[countryId].owner === ctx.currentPlayer &&
-    G.players[ctx.currentPlayer].troops >= numOfTroops
-  );
+  const isReinforcerTheOwner =
+    parseInt(G.countries[countryId].owner) === parseInt(ctx.currentPlayer);
+  const hasEnoughTroops =
+    parseInt(G.players[ctx.currentPlayer].unassignedTroops) >= parseInt(numOfTroops);
+  return isReinforcerTheOwner && hasEnoughTroops;
 };
 
 const moveTroopsValidation = (G, ctx, originCountryId, destinyCountryId, numOfTroops) => {
+  const isMoverTheOwner =
+    parseInt(G.countries[originCountryId].owner) === parseInt(ctx.currentPlayer);
+  const isMoverTheOwnerOfDestinationCountry =
+    parseInt(G.countries[destinyCountryId].owner) === parseInt(ctx.currentPlayer);
+  const hasEnoughTroops = parseInt(G.countries[originCountryId].troops) >= parseInt(numOfTroops);
+  const isDestinationCountryAdjacent =
+    G.countries[originCountryId].adjacencyList.includes(destinyCountryId);
   return (
-    G.countries[originCountryId].owner === ctx.currentPlayer &&
-    G.countries[destinyCountryId].owner === ctx.currentPlayer &&
-    G.countries[originCountryId].adjacencyList.includes(destinyCountryId) &&
-    numOfTroops > G.countries[originCountryId].troops
+    isMoverTheOwner &&
+    isMoverTheOwnerOfDestinationCountry &&
+    isDestinationCountryAdjacent &&
+    hasEnoughTroops
   );
 };
 
 const exchangeCardsValidation = (selectedCards) => {
+  const hasSelectedThreeCards = selectedCards.length === 3;
+  const isTradingThreeEqualCards = selectedCards.every(
+    (card) => card.type === selectedCards[0].type
+  );
+  const isTradingWithWildCards = selectedCards.some((card) => card.type === 'Wild');
+  const isTradingThreeUniqueCards = utils.isEveryItemUnique(selectedCards, 'type');
+
   return (
-    selectedCards.lenght === 3 &&
-    (selectedCards.every((card) => card.type === card[0].type) ||
-      selectedCards.some((card) => card.type === 'Wild') ||
-      utils.isEveryItemUnique(selectedCards, 'type'))
+    hasSelectedThreeCards &&
+    (isTradingThreeEqualCards || isTradingWithWildCards || isTradingThreeUniqueCards)
   );
 };
 
 // Actions
 const conquerCountryValidation = (G, ctx, numberOfTroops) => {
-  return (
-    G.players[ctx.currentPlayer].conquest &&
-    utils.isBetween(
+  const playesHasConquest = G.players[ctx.currentPlayer].conquest;
+  const numberOfTroopsIsValid = utils.isBetween(
       numberOfTroops,
       G.players[ctx.currentPlayer].conquest.minOfTroops,
       G.players[ctx.currentPlayer].conquest.maxOfTroops
     )
+
+  return (
+    playesHasConquest &&
+    numberOfTroopsIsValid
   );
 };
 
