@@ -50,10 +50,34 @@ const isEveryItemUnique = (array, prop) => {
   return [...uniques].length === array.length;
 };
 
+
+const calculateNumberOfOwnedCountries = (countries, playerId) => {
+  return Object.entries(countries).reduce((acc, [countryId, country]) => {
+    if (parseInt(country.owner) === parseInt(playerId)) {
+      return acc + 1;
+    }
+    return acc;
+  }, 0)
+}
+
+const calculateNumberOfTroopsToBeReceived = (numOfCountriesOwned) => {
+  return Math.max(3, Math.floor(numOfCountriesOwned / 3))
+}
+
+const drawCard = () => {
+  const typesOfCards = ["Infantry", "Cavalry", "Artillery", "Wild"]
+  const type = typesOfCards[Math.floor(Math.random() * 4)]
+
+  return { type }
+}
+
 export default {
   calculateInitialTroops,
   calculateTroopsFromCardExchange,
   isBetween,
   rollDice,
-  isEveryItemUnique
+  isEveryItemUnique,
+  calculateNumberOfOwnedCountries,
+  calculateNumberOfTroopsToBeReceived,
+  drawCard
 };
