@@ -1,0 +1,12 @@
+.backgroundTable {
+  background-image: url(../assets/table.jpg);
+  z-index: -1;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}

@@ -1,0 +1,14 @@
+.container {
+  display: flex;
+  align-items: center;
+  position: start;
+  margin-left: 50px;
+  height: 100vh;
+}
+
+.background {
+    background-image: url("../assets/Mapa.png");
+    background-repeat: no-repeat;
+    background-position: start;
+    overflow-y: auto;
+}

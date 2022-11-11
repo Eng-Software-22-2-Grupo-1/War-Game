@@ -1,0 +1,6 @@
+.options-background {
+  background-image: url("../assets/oldwar.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  overflow-y: auto;
+}
