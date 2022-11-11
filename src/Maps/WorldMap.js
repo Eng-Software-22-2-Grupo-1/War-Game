@@ -44,48 +44,48 @@ const WorldMap = {
     <path fill-rule="evenodd" clip-rule="evenodd" d="M1278.73 852.786L1279.16 852.32C1279.16 852.32 1279.16 842.545 1279.48 840.101C1279.8 837.657 1278.84 837.962 1277.56 836.129C1276.28 834.296 1279.16 763.118 1278.84 761.59C1278.52 760.063 1224.69 762.202 1224.69 762.202L1223.62 696.987L1219.78 694.849C1219.78 694.849 1216.9 693.016 1215.29 692.1C1213.69 691.183 1212.41 695.46 1211.13 696.071C1209.85 696.682 1206 698.82 1206 698.82C1206 698.82 1205.04 701.875 1204.4 704.014C1203.76 706.152 1200.88 704.319 1197.35 705.541C1193.83 706.763 1197.03 706.763 1196.07 709.818C1195.11 712.873 1195.11 710.123 1192.23 710.123C1189.34 710.123 1190.94 711.345 1189.02 713.789C1187.1 716.233 1186.78 714.4 1184.22 716.539C1181.65 718.677 1183.57 718.677 1181.97 721.732C1180.37 724.787 1180.05 723.259 1178.13 724.481C1176.21 725.703 1173 728.758 1171.08 730.591C1169.16 732.424 1168.2 731.507 1164.35 731.202C1160.51 730.896 1162.75 731.202 1159.87 731.507C1156.98 731.813 1157.62 733.646 1155.7 735.173C1153.78 736.701 1152.82 737.312 1150.57 739.45C1148.33 741.588 1149.61 740.367 1146.09 740.672C1142.56 740.977 1144.17 740.978 1140.64 743.116C1137.12 745.254 1140.32 745.865 1140 748.309C1139.68 750.753 1139.04 750.753 1138.08 752.892C1137.12 755.03 1138.08 755.641 1139.04 758.085C1140 760.529 1141.92 759.001 1141.92 759.001C1141.92 759.001 1141.28 762.667 1141.92 763.889C1142.56 765.111 1141.6 763.889 1138.72 763.889C1135.84 763.889 1137.44 764.806 1137.44 766.944C1137.44 769.082 1137.44 769.082 1137.44 769.082C1137.44 769.082 1136.48 769.388 1135.51 771.221C1134.55 773.054 1135.51 772.748 1135.84 774.887C1136.16 777.025 1136.48 777.941 1137.44 780.08C1138.4 782.218 1139.36 781.607 1140.96 784.968C1142.56 788.328 1141.6 788.634 1141.6 791.688C1141.6 794.743 1141.6 793.827 1141.92 797.798C1142.24 801.769 1144.17 800.548 1144.17 800.548C1144.17 800.548 1146.41 802.075 1147.69 802.991C1148.97 803.908 1148.97 804.824 1149.61 807.879C1150.25 810.934 1148.65 810.323 1148.01 812.156C1147.37 813.989 1148.01 813.378 1147.69 817.044C1147.37 820.71 1146.09 819.182 1144.81 820.71C1143.52 822.237 1143.85 822.237 1142.88 824.681C1141.92 827.125 1142.88 826.514 1144.49 827.736C1146.09 828.958 1148.01 829.874 1149.93 831.402C1154.36 836.021 1159.11 834.84 1164.67 832.013C1167.55 830.485 1166.27 830.18 1168.52 829.263C1170.76 828.347 1170.12 828.652 1171.4 828.041C1172.68 827.43 1173.64 826.514 1175.56 824.681C1177.49 822.848 1176.21 824.376 1178.45 823.154C1180.69 821.932 1181.01 821.015 1184.54 819.793C1188.06 818.571 1189.02 819.488 1189.02 819.488C1189.02 819.488 1189.02 819.488 1191.9 819.488C1194.79 819.488 1193.19 819.793 1193.83 821.015C1194.47 822.237 1196.39 822.237 1197.67 822.237C1198.95 822.237 1200.88 821.932 1202.48 821.321C1204.08 820.71 1202.16 818.571 1202.16 817.349C1202.16 816.127 1202.16 815.822 1203.12 813.683C1204.08 811.545 1206.96 810.934 1208.24 810.934C1209.53 810.934 1212.73 810.323 1214.01 809.101C1215.29 807.879 1215.93 808.49 1218.5 808.185C1221.06 807.879 1220.74 807.268 1222.66 805.435C1224.59 803.602 1224.59 804.519 1228.11 804.519C1231.63 804.519 1230.03 804.519 1233.56 804.519C1237.08 804.519 1236.76 804.824 1239 805.13C1241.25 805.435 1242.53 807.574 1244.13 808.49C1245.73 809.407 1244.77 809.712 1244.77 812.156C1244.77 814.6 1245.09 814.905 1247.65 819.182C1250.22 823.459 1251.5 823.459 1251.5 823.459C1251.5 823.459 1253.74 820.404 1255.66 817.655C1257.59 814.905 1257.27 816.738 1260.15 815.822C1263.03 814.905 1261.11 813.989 1261.75 810.018C1262.39 806.046 1263.67 808.796 1265.92 809.101C1268.16 809.407 1265.92 813.073 1265.28 815.211C1264.63 817.349 1263.35 817.96 1261.75 819.488C1260.15 821.015 1260.15 821.321 1258.23 823.459C1256.3 825.598 1257.27 825.292 1257.59 827.736C1257.91 830.18 1261.11 825.597 1262.39 823.765C1263.67 821.932 1263.67 823.154 1265.28 823.459C1266.88 823.765 1265.6 827.43 1265.6 829.263C1265.6 831.096 1265.92 830.791 1267.52 831.707C1269.12 832.624 1269.12 834.457 1268.16 836.901C1267.2 839.345 1268.16 839.344 1268.48 841.177C1268.8 843.01 1272.32 847.593 1273.61 848.815C1274.89 850.037 1274.57 849.426 1275.85 850.037C1277.13 850.648 1276.49 851.259 1278.73 852.786Z" stroke="black" stroke-miterlimit="4.32165" id="41"/>
     <path fill-rule="evenodd" clip-rule="evenodd" d="M174.737 187.231C174.737 187.231 174.963 187.447 175.87 190.039C176.776 192.631 177.455 194.359 179.494 197.815C181.533 201.271 179.721 211.64 179.721 211.64L183.346 216.392C183.346 216.392 186.291 217.688 187.424 217.904C188.557 218.12 188.104 223.521 187.877 225.681C187.65 227.841 184.932 226.761 183.346 227.193C181.76 227.625 181.307 231.297 181.08 233.457C180.854 235.617 176.782 234.757 176.782 234.757C177.915 236.917 180.18 237.133 181.087 241.021C181.993 244.91 181.54 243.613 182.673 245.126C183.805 246.638 185.844 246.854 186.297 250.31C186.751 253.766 186.751 251.822 189.243 256.358C191.735 260.894 189.469 262.839 189.922 266.943C190.375 271.047 192.641 269.535 194.227 271.695L194.9 274.068L281.897 273.852L289.147 190.255C289.147 190.255 175.19 187.231 174.737 187.231Z" stroke="black" stroke-miterlimit="4.32165" id="4"/>
   </g>
-  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="123.305" y="165.141" id="2">0</text>
-  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="998.792" y="484.964" id="36">0</text>
-  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="1086.868" y="420.008" id="37">0</text>
-  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="921.727" y="358.356" id="31">0</text>
-  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="814.935" y="276.886" id="20">0</text>
-  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="945.947" y="249.363" id="27">0</text>
-  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="1015.307" y="192.114" id="28">0</text>
-  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="1114.391" y="150.278" id="29">0</text>
-  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="1224.485" y="161.288" id="30">0</text>
-  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="1096.776" y="252.665" id="32">0</text>
-  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="1116.593" y="334.135" id="33">0</text>
-  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="1248.706" y="349.548" id="34">0</text>
-  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="849.065" y="490.713" id="35">0</text>
-  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="445.019" y="602.886" id="11">0</text>
-  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="653.096" y="576.463" id="21">0</text>
-  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="756.585" y="784.54" id="25">0</text>
+  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="136.516" y="160.737" id="2">0</text>
+  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="997.691" y="497.074" id="36">0</text>
+  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="1114.392" y="437.623" id="37">0</text>
+  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="912.919" y="331.933" id="31">0</text>
+  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="795.118" y="313.217" id="20">0</text>
+  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="958.057" y="280.189" id="27">0</text>
+  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="997.692" y="162.389" id="28">0</text>
+  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="1116.593" y="133.764" id="29">0</text>
+  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="1192.558" y="178.903" id="30">0</text>
+  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="1106.684" y="228.444" id="32">0</text>
+  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="1144.116" y="326.428" id="33">0</text>
+  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="1254.211" y="324.226" id="34">0</text>
+  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="857.873" y="512.732" id="35">0</text>
+  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="431.808" y="583.069" id="11">0</text>
+  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="636.582" y="539.031" id="21">0</text>
+  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="755.484" y="812.063" id="25">0</text>
   <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="867.779" y="794.449" id="26">0</text>
-  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="1183.748" y="782.338" id="41">0</text>
-  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="1290.539" y="750.411" id="42">0</text>
-  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="1242.098" y="630.408" id="40">0</text>
-  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="1127.601" y="656.831" id="39">0</text>
-  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="359.146" y="731.45" id="13">0</text>
-  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="353.642" y="630.164" id="12">0</text>
-  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="334.926" y="520.07" id="10">0</text>
-  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="742.272" y="674.202" id="24">0</text>
-  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="817.136" y="629.063" id="23">0</text>
-  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="743.373" y="531.08" id="22">0</text>
-  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="225.933" y="165.569" id="1">0</text>
-  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="229.236" y="239.331" id="4">0</text>
-  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="491.259" y="118.228" id="3">0</text>
-  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="317.311" y="261.35" id="5">0</text>
-  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="399.881" y="252.543" id="6">0</text>
-  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="326.118" y="361.536" id="8">0</text>
-  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="228.135" y="334.012" id="7">0</text>
-  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="238.043" y="437.5" id="9">0</text>
-  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="693.831" y="321.902" id="17">0</text>
+  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="1184.849" y="762.521" id="41">0</text>
+  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="1296.044" y="777.934" id="42">0</text>
+  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="1228.887" y="616.096" id="40">0</text>
+  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="1124.298" y="649.124" id="39">0</text>
+  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="374.559" y="706.128" id="13">0</text>
+  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="372.358" y="636.77" id="12">0</text>
+  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="317.311" y="536.584" id="10">0</text>
+  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="745.575" y="654.385" id="24">0</text>
+  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="795.117" y="610.347" id="23">0</text>
+  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="720.253" y="518.97" id="22">0</text>
+  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="285.384" y="172.175" id="1">0</text>
+  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="243.548" y="252.542" id="4">0</text>
+  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="500.067" y="140.247" id="3">0</text>
+  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="297.494" y="233.827" id="5">0</text>
+  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="386.67" y="265.754" id="6">0</text>
+  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="337.127" y="374.747" id="8">0</text>
+  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="264.466" y="311.993" id="7">0</text>
+  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="241.346" y="438.601" id="9">0</text>
+  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="720.253" y="308.691" id="17">0</text>
   <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="698.235" y="204.102" id="15">0</text>
-  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="585.939" y="326.305" id="16">0</text>
-  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="594.747" y="215.111" id="14">0</text>
-  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="1107.784" y="518.97" id="38">0</text>
+  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="580.434" y="298.782" id="16">0</text>
+  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="593.646" y="225.019" id="14">0</text>
+  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="1113.289" y="529.979" id="38">0</text>
   <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="719.153" y="401.169" id="19">0</text>
-  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="591.444" y="436.399" id="18">0</text>
+  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 30.8px;" x="616.766" y="395.664" id="18">0</text>
 </svg>`,
   numberOfCountries: 42,
   countryNames: {
