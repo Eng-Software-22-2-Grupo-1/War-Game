@@ -1,4 +1,6 @@
-import { attackCountry, occupyCountry, reinforceCountry } from './Moves';
+import utils from '../shared/utils';
+import { receiveTroops } from './Actions';
+import { attackCountry, exchangeCards, moveTroops, occupyCountry, reinforceCountry } from './Moves';
 
 const ocupation = {
   endIf: ({ G, ctx }) =>
@@ -8,33 +10,51 @@ const ocupation = {
   next: 'reinforcement'
 };
 
-const reinforcement = {
-  onBegin: ({ G, ctx, events, random, ...plugins }) => G,
-  onEnd: ({ G, ctx, events, random, ...plugins }) => G,
-  endIf: ({ G, ctx }) => Object.values(G.players).every((player) => player.troops === 0),
+const reinforcement = { 
+  endIf: ({ G, ctx }) => Object.values(G.players).every((player) => player.unassignedTroops === 0),
   moves: { reinforceCountry },
-  turn: {
-    // Define
-  },
+  turn: { minMoves: 1, maxMoves: 1 },
   next: 'war'
 };
 
 const war = {
-  onBegin: ({ G, ctx }) => {
-    const currentPlayer = ctx.currentPlayer;
-    const unassignedUnits = { ...G.unassignedUnits };
-
-    const numOwnedCountries = Object.keys(G.countries).reduce(
-      (count, key) => count + (G.countries[key].owner === currentPlayer ? 1 : 0),
-      0
-    );
-    // TODO: add bonus for continents and cards
-    unassignedUnits[currentPlayer] += Math.max(Math.floor(numOwnedCountries / 3), 3);
-    return { ...G, unassignedUnits };
-  },
   moves: { attackCountry, reinforceCountry },
   turn: {
-    // Define
+    onBegin: ({ G, ctx, events }) => {
+      receiveTroops({G, ctx});
+      const isPlayerAbleToTradeCards = G.players[(ctx.currentPlayer)].cards.length > 3
+      if (!isPlayerAbleToTradeCards) {
+        events.setStage("reinforcement");
+      }
+      
+      return G
+    },
+    onEnd: ({ G, ctx, events }) => {
+      if(G.players[ctx.currentPlayer].shouldReceiveCard) {
+        const newCard = utils.drawCard(G.cards);
+        G.players[ctx.currentPlayer].cards.push(newCard);
+
+        delete G.players[ctx.currentPlayer].shouldReceiveCard;
+      }
+      return G
+    },
+    stages: {
+      tradeCards:{
+        moves: {exchangeCards},
+        next:'reifocement'
+      },
+      reifocement: {
+        moves: {reinforceCountry},
+        next: 'attack'
+      },
+      attack: {
+        moves: { attackCountry },
+        next: 'fortification'
+      },
+      fortification: {
+        moves: {moveTroops}
+      }
+    }
   }
 };
 
