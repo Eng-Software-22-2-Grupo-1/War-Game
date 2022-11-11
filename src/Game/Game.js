@@ -42,8 +42,9 @@ const createGame = (options) => {
       Object.entries([...Array(numberOfPlayers).keys()]).forEach(([playerId]) => {
         players[playerId] = {
           color: playersColors[playerId],
-          troops: utils.calculateInitialTroops(numberOfPlayers),
-          cards: []
+          unassignedTroops: utils.calculateInitialTroops(numberOfPlayers),
+          cards: [],
+          shouldReceiveCard: false
         };
       });
 
