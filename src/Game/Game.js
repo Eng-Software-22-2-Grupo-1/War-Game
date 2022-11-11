@@ -1,6 +1,6 @@
 import WorldMap from '../Maps/WorldMap';
 import utils from '../shared/utils';
-import Moves from './Moves';
+import * as Moves from './Moves';
 import Phases from './Phases';
 
 const createGame = (options) => {
@@ -42,8 +42,9 @@ const createGame = (options) => {
       Object.entries([...Array(numberOfPlayers).keys()]).forEach(([playerId]) => {
         players[playerId] = {
           color: playersColors[playerId],
-          troops: utils.calculateInitialTroops(numberOfPlayers),
-          cards: []
+          unassignedTroops: utils.calculateInitialTroops(numberOfPlayers),
+          cards: [],
+          shouldReceiveCard: false
         };
       });
 
@@ -58,7 +59,8 @@ const createGame = (options) => {
 
       return {
         countries,
-        players
+        players,
+        numOfSetsTraded: 0
       };
     },
     moves: Moves,
