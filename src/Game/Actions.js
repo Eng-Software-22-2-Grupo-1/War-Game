@@ -1,3 +1,4 @@
+import utils from '../shared/utils';
 import Validation from './Validation';
 
 const conquerCountry = ({ G, ctx }, numOfTroops) => {
@@ -27,9 +28,15 @@ const conquerCountry = ({ G, ctx }, numOfTroops) => {
     }
 
     delete G.players[ctx.currentPlayer].conquest;
+
+    G.players[ctx.currentPlayer].shouldReceiveCard = true;
   }
 };
 
-const receiveTroops = ({ G, ctx }) => {};
+const receiveTroops = ({ G, ctx }) => {
+  const numOfOwnedCountries = utils.calculateNumberOfOwnedCountries(G.countries, ctx.currentPlayer);
+  const numOfTroops = utils.calculateNumberOfTroopsToBeReceived(numOfOwnedCountries);
+  G.players[ctx.currentPlayer].unassignedTroops += numOfTroops;
+};
 
-export default { conquerCountry, receiveTroops };
+export { conquerCountry, receiveTroops };
