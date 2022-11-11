@@ -39,14 +39,15 @@ export const SvgImage = ({ image, map, players, countries, handleClick }) => {
 
 
   return (
-    <div className='container'>
-      <svg width="1400" height="938" version="1.0" data-revision="112" style={{overflow: "hidden"}} className='background'>
+    <div className='background'>
+      <svg width="1400" height="938" version="1.0" data-revision="112" style={{overflow: "hidden"}}>
       <rect x="0.01495404" y="0.05651855" width="1399.9685" height="937.9553" rx="0" ry="0" style={{fill: "#374548", fillOpacity: 0}} id="obj1"></rect>
         <g>
           {pathComponents}
       </g>
       </svg>
-    </div>)
+    </div>
+    )
 };
 
 SvgImage.propTypes = {
