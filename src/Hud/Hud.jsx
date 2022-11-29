@@ -1,16 +1,16 @@
 import PropTypes from 'prop-types';
 
 import EndTurnButton from '../components/EndTurnButton';
-import PhaseIndicator from '../components/PhaseIndicator';
+import Indicator from '../components/Indicator';
 import PlayersInfo from '../components/PlayersInfo';
+import utils from '../shared/utils';
 
 const Hud = ({ players, currentPlayerColor, gamePhase, onEndTurnClick, currentPlayer }) => {
   return (
     <>
       <div style={{ display: 'flex', justifyContent: 'space-between', flexDirection: 'column' }}>
-        <PhaseIndicator gamePhase={gamePhase} />
+        <Indicator indication='Fase atual' info={gamePhase} translateFunction={utils.translateGamePhase} />
         <PlayersInfo players={players} currentPlayer={currentPlayer}/>
-        {/* <PlayerIndicator currentPlayerColor={currentPlayerColor}/> */}
         <EndTurnButton onEndTurnClick={onEndTurnClick} />
       </div>
     </>
