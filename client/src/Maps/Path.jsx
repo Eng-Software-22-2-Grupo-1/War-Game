@@ -15,7 +15,8 @@ const Path = ({ path, title, playerColor, attackStatus, handleClick, text, troop
     strokeWidth: hover ? 3 : 1,
     stroke: "black",
     strokeMiterlimit: path.style.strokeMiterlimit,
-    strokeOpacity: path.style.strokeOpacity
+    strokeOpacity: path.style.strokeOpacity,
+    cursor: hover ? 'pointer' : 'default'
   };
 
   return (

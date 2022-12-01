@@ -1,5 +1,4 @@
 import WorldMap from '../Maps/WorldMap';
-import utils from '../shared/utils';
 import * as Moves from './Moves';
 import Phases from './Phases';
 
@@ -42,7 +41,8 @@ const createGame = (options) => {
       Object.entries([...Array(numberOfPlayers).keys()]).forEach(([playerId]) => {
         players[playerId] = {
           color: playersColors[playerId],
-          unassignedTroops: utils.calculateInitialTroops(numberOfPlayers),
+          // unassignedTroops: utils.calculateInitialTroops(numberOfPlayers),
+          unassignedTroops: 2,
           cards: [],
           shouldReceiveCard: false,
           numberOfOwnedCountries: 0
@@ -52,7 +52,9 @@ const createGame = (options) => {
       Object.entries(gameMap.countryNames).forEach(([countryId, countryName]) => {
         countries[countryId] = {
           name: countryName,
-          owner: null,
+          // random player between 0 and 3
+          owner: Math.floor(Math.random() * 3),
+          // owner: null,
           troops: 0,
           adjacencyList: gameMap.adjacencyList[countryId]
         };

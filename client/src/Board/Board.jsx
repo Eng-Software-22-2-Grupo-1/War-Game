@@ -9,9 +9,14 @@ import './Board.css';
 
 const Board = ({ ctx, G, moves, events }) => {
     const [selectedCountry, setSelectedCountry] = useState(-1);
+    const [selectedNumberOfTroops, setSelectedNumberOfTroops] = useState(0);
+
     const gameMap = WorldMap
     const numberOfReinforcementTroopsDuringReinforcementPhase = 1;
 
+    const handleStageEnd = () => {
+        events.endStage();
+    }
 
     const handleEndTurnClick = () => {
         events.endTurn()
@@ -22,11 +27,19 @@ const Board = ({ ctx, G, moves, events }) => {
     }
 
     const handleReinforcement = (countryId) => {
-        moves.reinforceCountry(countryId, numberOfReinforcementTroopsDuringReinforcementPhase);
+        if (ctx.phase === 'reinforcement') {
+            moves.reinforceCountry(countryId, numberOfReinforcementTroopsDuringReinforcementPhase);
+            return
+        }
+        moves.reinforceCountry(countryId, selectedNumberOfTroops);
     }
 
     const handleWar = (countryId) => {
-        
+        // Cards trading
+        // Reinforcement
+
+        // Attack
+        // Fortification
     }
 
     const handleGamePhase = (countryId) => {
