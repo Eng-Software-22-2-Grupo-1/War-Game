@@ -13,4 +13,4 @@
 npm-debug.log
 
 #py
-/__pycache__
+server/__pycache__
