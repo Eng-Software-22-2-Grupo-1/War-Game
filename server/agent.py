@@ -86,6 +86,30 @@ class State:
                     opponent_adj_list[city_id].append(neighbour_id)
         return dict(opponent_adj_list)
 
+def ai_reinforce(state, unassigned_units):
+    function = Functions()
+    search_cities = state.dict_player_cities[state.current_player]
+    city_bsr = {}
+    for city in search_cities:
+        try:
+            city_bsr[city] = function.BSR(
+                state, city, state.opponent_adj_list[city])
+        except:
+            continue
+    city_NBSR = function.NBSR(city_bsr)
+    sorted_NBSR = sorted(
+        city_NBSR.items(), key=operator.itemgetter(1), reverse=True)
+    moves = []
+    for tup in sorted_NBSR:
+        if unassigned_units == 0:
+            return moves
+        val = ceil(tup[1] * unassigned_units)
+        if val != 0:
+            unassigned_units -= val
+            state.dict_city_troops[tup[0]] += val
+            moves.append(("reinforce", tup[0], 0, val))
+    return moves
+
 class Node:
     def __init__(self, state, parent, action, path_cost, depth):
         self.state = state
@@ -314,3 +338,158 @@ class Agent:
             for string in step:
                 attack.append(string)
         return attack
+
+class Functions:
+    def heuristic(self, state):
+        search_cities = state.dict_player_cities[state.current_player]
+        opponent_BSR = {}
+        for city in search_cities:
+            try:
+                opponents = state.opponent_adj_list[city]
+            except:
+                continue
+            for opponent in opponents:
+                if opponent not in opponent_BSR:
+                    opponent_BSR[opponent] = self.BSR(
+                        state, opponent, state.opponent_adj_list[opponent])
+        opponent_NBSR = self.NBSR(opponent_BSR)
+        return opponent_BSR, opponent_NBSR
+
+    def BSR(self, state, city_id, opponents):
+        sum = 0
+        for opponent_id in opponents:
+            sum += state.dict_city_troops[opponent_id]
+        return sum / state.dict_city_troops[city_id]
+
+    def BSR_(self, state, city_id, opponents, num_troops):
+        sum = 0
+        for opponent_id in opponents:
+            sum += state.dict_city_troops[opponent_id]
+        return sum / num_troops
+
+    def NBSR(self, dict_BSR):
+        sum = 0
+        for val in dict_BSR:
+            sum += dict_BSR[val]
+        dict_NBSR = {}
+        for val in dict_BSR:
+            dict_NBSR[val] = dict_BSR[val] / sum
+        return dict_NBSR
+
+    def total_BSR(self, state):
+        total = 0
+        for city in state.dict_player_cities[state.current_player]:
+            if city in state.opponent_adj_list:
+                total += self.BSR(state, city, state.opponent_adj_list[city])
+        return total
+
+    def threshold(self, state, bsr, nbsr):
+        target_attack = []
+        attack = []
+        for key in nbsr:
+            if nbsr[key] >= 0:
+                target_attack.append(key)
+                source = self.best_one_can_attack(state, key)
+                if source != 0:
+                    attack.append(("attack", source, key, 0))
+        return attack
+
+    def best_one_can_attack(self, state, key):
+        search_city = state.opponent_adj_list[key]
+        max_val = -1
+        max_id = 0
+        for id_ in search_city:
+            if max_val < state.dict_city_troops[id_] and state.dict_city_troops[id_] > state.dict_city_troops[key] + 1:
+                max_val = state.dict_city_troops[id_]
+                max_id = id_
+        return max_id
+
+class Problem:
+    def __init__(self):
+        self.function = Functions()
+
+    def next_state(self, current_state, action):
+        attacks = action.split('_')
+        attack = []
+        for string in attacks:
+            attack.append(string)
+        next_state = deepcopy(current_state)
+        cost = next_state.dict_city_troops[attack[1]]
+        next_state.dict_city_troops[attack[0]
+                                    ] -= next_state.dict_city_troops[attack[1]]
+        next_state.dict_city_troops[attack[1]] = 0
+
+        owner = next_state.get_city_owner(attack[1])
+        next_state.dict_player_cities[next_state.current_player].append(
+            attack[1])
+        next_state.dict_player_cities[owner].remove(attack[1])
+        next_state.opponent_adj_list = next_state.get_opponent_neighbours()
+        try:
+            bsr1 = self.function.BSR_(
+                next_state, attack[0], current_state.opponent_adj_list[attack[0]], 1)
+        except:
+            bsr1 = 0
+        try:
+            bsr2 = self.function.BSR_(
+                next_state, attack[1], current_state.opponent_adj_list[attack[1]], 1)
+        except:
+            bsr2 = 0
+        if bsr1 == 0 and bsr2 == 0:
+            nbsr1 = 0.5
+        else:
+            nbsr1 = bsr1 / (bsr1 + bsr2)
+
+        val = next_state.dict_city_troops[attack[0]]
+        val1 = floor(val * nbsr1) if floor(val * nbsr1) >= 1 else 1
+        if val > val1:
+            next_state.dict_city_troops[attack[0]] = val1
+        else:  # val = val1
+            next_state.dict_city_troops[attack[0]] = val1 - 1
+        next_state.dict_city_troops[attack[1]] = val - \
+            next_state.dict_city_troops[attack[0]]
+        next_state.unassigned_units = max(
+            len(next_state.dict_player_cities[next_state.current_player]) // 3, 3)
+        ai_reinforce(next_state, next_state.unassigned_units)
+        return next_state, cost
+
+    def goal_test(self, state):
+        for player in state.dict_player_cities:
+            if player != state.current_player and len(state.dict_player_cities[player]) != 0:
+                return False
+        return True
+
+    def get_actions(self, state):
+        BSR, NBSR = self.function.heuristic(state)
+        attacks = self.function.threshold(state, BSR, NBSR)
+        actions = []
+        for attack in attacks:
+            action = str(attack[1]) + '_' + str(attack[2])
+            actions.append(action)
+        return actions
+
+    def child_node(self, node, action):
+        next_state, cost = self.next_state(node.state, action)
+        return Node(next_state, node, action, node.path_cost + cost, node.depth + 1)
+
+    def eval(self, state):
+        my_soldiers_count = sum(state.get_troops_of_cities(
+            state.dict_player_cities[state.current_player]))
+        opponent_soldiers_count = sum(
+            state.get_troops_of_cities(state.get_opponent_cities()))
+
+        my_cities_count = len(state.dict_player_cities[state.current_player])
+        opponent_cities_count = len(state.get_opponent_cities())
+
+        return 2 * (0.1 * my_soldiers_count / (my_soldiers_count + opponent_soldiers_count) + 0.9 * my_cities_count / (my_cities_count + opponent_cities_count)) - 1
+
+    def minimax_goal_test(self, state):
+        if len(state.dict_player_cities) > 1:
+            return 0
+        if state.current_player in state.dict_player_cities:
+            return 1
+        return -1
+
+    def leaf_test(self, state):
+        if len(self.get_actions(state)) == 0:
+            return True
+        return False
