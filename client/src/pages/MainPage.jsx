@@ -22,7 +22,7 @@ const MainPage = () => {
   const NewGame = Client({
     game,
     board: Board,
-    numPlayers: options.numberOfPlayers
+    numPlayers: options.numberOfPlayers + options.numberOfBots,
   });
 
   return <NewGame />;

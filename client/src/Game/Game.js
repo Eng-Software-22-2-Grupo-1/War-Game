@@ -1,10 +1,11 @@
 import WorldMap from '../Maps/WorldMap';
+import utils from '../shared/utils';
 import * as Moves from './Moves';
 import Phases from './Phases';
 
 const createGame = (options) => {
   const gameMap = WorldMap;
-  const { numberOfPlayers } = options;
+  const { numberOfPlayers, numberOfBots } = options;
   const playersColors = [
     {
       name: 'Red',
@@ -38,11 +39,11 @@ const createGame = (options) => {
       const players = {};
       const countries = {};
 
-      Object.entries([...Array(numberOfPlayers).keys()]).forEach(([playerId]) => {
+      Object.entries([...Array(numberOfPlayers + numberOfBots).keys()]).forEach(([playerId]) => {
         players[playerId] = {
           color: playersColors[playerId],
-          // unassignedTroops: utils.calculateInitialTroops(numberOfPlayers),
-          unassignedTroops: 2,
+          isAi: playerId >= numberOfPlayers,
+          unassignedTroops: utils.calculateInitialTroops(numberOfPlayers),
           cards: [],
           shouldReceiveCard: false,
           numberOfOwnedCountries: 0
@@ -52,9 +53,7 @@ const createGame = (options) => {
       Object.entries(gameMap.countryNames).forEach(([countryId, countryName]) => {
         countries[countryId] = {
           name: countryName,
-          // random player between 0 and 3
-          owner: Math.floor(Math.random() * 3),
-          // owner: null,
+          owner: null,
           troops: 0,
           adjacencyList: gameMap.adjacencyList[countryId]
         };
